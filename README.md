@@ -1,63 +1,81 @@
-# Backend CRUD API for a shoe washing service
-this project is a simple rest api for managing the list of items in a shoe washing service
----
-#Live API URL
-The API is deployed and live at the following url:
-https://shoe-wash-api.vercel.app/
+# API CRUD Backend untuk Layanan Cuci Sepatu
+
+Proyek ini adalah REST API sederhana untuk mengelola daftar item dalam layanan cuci sepatu. API ini dibangun dengan Node.js dan Express.js, menggunakan Supabase sebagai database, dan di-deploy di Vercel.
+
 ---
 
-# Technologies Used
-* **Backend:** Node.JS, Express.js
+### URL API Publik
+
+API ini telah di-deploy dan dapat diakses melalui URL berikut:
+`https://your-api-url.vercel.app`
+
+---
+
+### Teknologi yang Digunakan
+* **Backend:** Node.js, Express.js
 * **Database:** Supabase (PostgreSQL)
 * **Deployment:** Vercel
+
 ---
 
-### API Endpoints
-All endpoints are relative to the base URL
-#### 1. Get All items
-* **Method:** 'GET'
-* **Endpoint:** '/items'
-* **Description:** Retrieves a list of all shoe washing jobs in the database.
-* **Example 'curl':**
+### Endpoint API
+
+Semua endpoint relatif terhadap URL dasar.
+
+#### 1. Ambil Semua Data Item
+* **Metode:** `GET`
+* **Endpoint:** `/items`
+* **Deskripsi:** Mengambil daftar semua pekerjaan cuci sepatu dari database.
+* **Contoh `curl`:**
     ```bash
-    curl [https://shoe-wash-api.vercel.app/items](https://shoe-wash-api.vercel.app/)
+    curl [https://your-api-url.vercel.app/items](https://your-api-url.vercel.app/items)
     ```
-#### 2. Get Items by Status (Filter)
-* **Method:** `GET`
-* **Endpoint:** `/items?status={statusName}`
-* **Description:** Adds a new shoe washing job to the database.
-* **Request Body (JSON):**
+
+#### 2. Ambil Item Berdasarkan Status (Filter)
+* **Metode:** `GET`
+* **Endpoint:** `/items?status={namaStatus}`
+* **Deskripsi:** Mengambil semua pekerjaan yang cocok dengan status yang diberikan (contoh: "Washing", "Completed").
+* **Contoh `curl`:**
+    ```bash
+    curl "[https://your-api-url.vercel.app/items?status=Completed](https://your-api-url.vercel.app/items?status=Completed)"
+    ```
+
+#### 3. Buat Item Baru
+* **Metode:** `POST`
+* **Endpoint:** `/items`
+* **Deskripsi:** Menambahkan pekerjaan cuci sepatu baru ke dalam database.
+* **Body Permintaan (JSON):**
     ```json
     {
-    "customer_name": "New Customer",
-    "status": "Washing"
+      "customer_name": "Nama Pelanggan Baru",
+      "status": "Washing"
     }
     ```
-* **Example `curl`:**
-  ```bash
-  curl -X POST -H "Content-Type: application/json" -d '{"customer_name" :"New Customer"
-  ```
+* **Contoh `curl`:**
+    ```bash
+    curl -X POST -H "Content-Type: application/json" -d '{"customer_name":"Nama Pelanggan Baru","status":"Washing"}' [https://your-api-url.vercel.app/items](https://your-api-url.vercel.app/items)
+    ```
 
- #### 4. Update an Item's Status
-* **Method:** `PUT`
+#### 4. Perbarui Status Item
+* **Metode:** `PUT`
 * **Endpoint:** `/items/{id}`
-* **Description:** Updates the status of a specific job using its unique ID.
-* **Request Body (JSON):**
+* **Deskripsi:** Memperbarui status pekerjaan tertentu menggunakan ID uniknya.
+* **Body Permintaan (JSON):**
     ```json
     {
       "status": "Completed"
     }
     ```
-* **Example `curl`:**
+* **Contoh `curl`:**
     ```bash
     curl -X PUT -H "Content-Type: application/json" -d '{"status":"Completed"}' [https://your-api-url.vercel.app/items/1](https://your-api-url.vercel.app/items/1)
     ```
 
-#### 5. Delete an Item
-* **Method:** `DELETE`
+#### 5. Hapus Item
+* **Metode:** `DELETE`
 * **Endpoint:** `/items/{id}`
-* **Description:** Deletes a specific job from the database using its unique ID.
-* **Example `curl`:**
+* **Deskripsi:** Menghapus pekerjaan tertentu dari database menggunakan ID uniknya.
+* **Contoh `curl`:**
     ```bash
     curl -X DELETE [https://your-api-url.vercel.app/items/1](https://your-api-url.vercel.app/items/1)
     ```
